@@ -132,4 +132,23 @@ function findBook(bookId) {
   return null;
 }
 
+function removeBookFromFinished(bookId) {
+  const bookTarget = findBookIndex(bookId);
+
+  if (bookTarget === -1) return;
+
+  books.splice(bookTarget, 1);
+  document.dispatchEvent(new Event(RENDER_EVENT));
+}
+
+function findBookIndex(bookId) {
+  for (const index in books) {
+    if (books[index].id === bookId) {
+      return index;
+    }
+  }
+
+  return -1;
+}
+
 
