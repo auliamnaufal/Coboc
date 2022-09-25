@@ -167,9 +167,19 @@ function findBookIndex(bookId) {
   return -1;
 }
 
+const isStorageExist = () => {
+  if (typeof Storage === undefined) {
+    alert("Browser kamu tidak mendukung kemampuan untuk menyimpan data");
+    return false;
+  }
+  return true;
+};
+
 const saveBooks = () => {
-  const serializedData = JSON.stringify(books);
-  localStorage.setItem(STORAGE_KEY, serializedData);
+  if (isStorageExist()) {
+    const serializedData = JSON.stringify(books);
+    localStorage.setItem(STORAGE_KEY, serializedData);
+  }
 };
 
 const loadBookFromStorage = () => {
