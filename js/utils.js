@@ -171,3 +171,16 @@ const saveBooks = () => {
   const serializedData = JSON.stringify(books);
   localStorage.setItem(STORAGE_KEY, serializedData);
 };
+
+const loadBookFromStorage = () => {
+  const serializedData = localStorage.getItem(STORAGE_KEY);
+  let parsedData = JSON.parse(serializedData);
+
+  if (parsedData !== null) {
+    parsedData.forEach((book) => {
+      books.push(book);
+    });
+  }
+
+  document.dispatchEvent(new Event(RENDER_EVENT));
+};

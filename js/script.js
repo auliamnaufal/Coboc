@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
     addBook();
     clearFormInputs(modal)
   });
+
+  loadBookFromStorage();
 });
 
 document.addEventListener(RENDER_EVENT, () => {
