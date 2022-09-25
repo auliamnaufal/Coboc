@@ -132,6 +132,15 @@ function findBook(bookId) {
   return null;
 }
 
+function undoBookFromFinished(bookId) {
+  const bookTarget = findBook(bookId);
+
+  if (bookTarget == null) return;
+
+  bookTarget.isCompleted = false;
+  document.dispatchEvent(new Event(RENDER_EVENT));
+}
+
 function removeBookFromFinished(bookId) {
   const bookTarget = findBookIndex(bookId);
 
