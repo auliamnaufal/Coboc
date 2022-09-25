@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Coboc | Books Collections</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="header__heading">Coboc</h1>
+      <p class="header__desc">Books Collections</p>
+    </header>
+
+    <main class="main-content">
+      <input
+        type="text"
+        name="search"
+        id="search-input"
+        placeholder="Type here to search book"
+      />
+
+      <div class="wrapper">
+        <div class="container">
+          <h2 class="container__header">Buku yang belum selesai dibaca</h2>
+          <div class="book__list" id="unfinished"></div>
+        </div>
+
+        <div class="container">
+          <h2 class="container__header">Buku yang belum selesai dibaca</h2>
+          <div class="book__list" id="finished"></div>
+        </div>
+      </div>
+
+      <div class="dialogue" id="dialogue"></div>
+    </main>
+
+    <button class="add-button" id="add-button">+</button>
+
+    <div class="modal" id="modal">
+      <div class="modal__body">
+        <h2 class="modal__header">Tambah Buku</h2>
+        <form action="#" class="form" id="form">
+          <div class="form__group">
+            <label for="title">Judul Buku</label>
+            <input type="text" id="title" name="title" required />
+          </div>
+          <div class="form__group">
+            <label for="author">Pengarang Buku</label>
+            <input type="text" id="author" name="author" required />
+          </div>
+          <div class="form__group">
+            <label for="year">Tahun Rilis</label>
+            <input
+              type="number"
+              min="1900"
+              max="2022"
+              step="1"
+              value="2022"
+              id="year"
+              name="year"
+              required
+            />
+          </div>
+          <div class="form__group">
+            <label for="cover">Cover Buku (optional)</label>
+            <input type="file" id="cover" name="cover" />
+          </div>
+          <input
+            type="submit"
+            value="submit"
+            name="submit"
+            class="btn-submit"
+          />
+        </form>
+      </div>
+    </div>
+
+    <script src="./js/utils.js"></script>
+    <script src="./js/script.js"></script>
+  </body>
+</html>
