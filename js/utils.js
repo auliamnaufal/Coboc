@@ -113,4 +113,23 @@ const clearFormInputs = (modal) => {
   modal.style.display = "none";
 };
 
+const addBookToFinish = (bookId) => {
+  const bookTarget = findBook(bookId)
+  
+  if (bookTarget === null) return
+  
+  bookTarget.isCompleted = true
+
+  document.dispatchEvent(new Event(RENDER_EVENT))
+}
+
+function findBook(bookId) {
+  for (const bookItem of books) {
+    if (bookItem.id === bookId) {
+      return bookItem;
+    }
+  }
+  return null;
+}
+
 

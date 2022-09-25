@@ -23,12 +23,19 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener(RENDER_EVENT, () => {
+  const unFinishedBooks = document.getElementById("unfinished");
+  unFinishedBooks.innerHTML = "";
+
   const finishedBooks = document.getElementById("finished");
   finishedBooks.innerHTML = "";
 
   books.forEach((book) => {
     const bookElement = makeBookItem(book);
-    finishedBooks.append(bookElement);
+    if (!book.isCompleted) {
+      unFinishedBooks.append(bookElement)
+    } else {
+      finishedBooks.append(bookElement);
+    }
 
     const bookCover = document.getElementById(`cover-${book.id}`);
 
