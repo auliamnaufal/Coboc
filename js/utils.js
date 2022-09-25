@@ -1,3 +1,26 @@
+const addBook = () => {
+  const titleValue = document.getElementById("title").value;
+  const authorValue = document.getElementById("author").value;
+  const booksYearValue = document.getElementById("year").value;
+  const booksCoverContainer = document.getElementById("cover");
+
+  const [file] = booksCoverContainer.files;
+  const bookCoverValue = file ? URL.createObjectURL(file) : "https://www.darren-young.com/wp-content/uploads/2015/04/default-placeholder.png";
+
+  const generatedID = generateId();
+  const bookObject = generateBookObject(
+    generatedID,
+    titleValue,
+    authorValue,
+    parseInt(booksYearValue),
+    bookCoverValue,
+    false
+  );
+
+  books.push(bookObject);
+  document.dispatchEvent(new Event(RENDER_EVENT))
+}
+
 const makeBookItem = (bookObject) => {
   const bookTitle = document.createElement("h3");
   bookTitle.classList.add("book__item--title");
