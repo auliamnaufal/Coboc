@@ -1,28 +1,26 @@
-const books = []
+const books = [];
 
 const RENDER_EVENT = "render-book";
 
-document.addEventListener('DOMContentLoaded', () => {
-  const addButton = document.getElementById('add-button')
-  const modal = document.getElementById('modal')
-  const form = document.getElementById('form')
+document.addEventListener("DOMContentLoaded", () => {
+  const addButton = document.getElementById("add-button");
+  const modal = document.getElementById("modal");
+  const form = document.getElementById("form");
 
-  addButton.addEventListener('click', () => {
-    modal.style.display = 'block'
-  })
+  addButton.addEventListener("click", () => {
+    modal.style.display = "block";
+  });
 
-  modal.addEventListener('click', (e) => {
-    if (e.target === e.currentTarget) {
-      modal.style.display = 'none'
-    }
-  })
+  modal.addEventListener("click", (e) => {
+    if (e.target === e.currentTarget) clearFormInputs(modal)
+  });
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
     addBook();
-  })
- 
-})
+    clearFormInputs(modal)
+  });
+});
 
 document.addEventListener(RENDER_EVENT, () => {
   const finishedBooks = document.getElementById("finished");
@@ -30,7 +28,7 @@ document.addEventListener(RENDER_EVENT, () => {
 
   books.forEach((book) => {
     const bookElement = makeBookItem(book);
-    finishedBooks.append(bookElement)
+    finishedBooks.append(bookElement);
 
     const bookCover = document.getElementById(`cover-${book.id}`);
 
