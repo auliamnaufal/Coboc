@@ -2,6 +2,8 @@ const books = [];
 
 const RENDER_EVENT = "render-book";
 
+const STORAGE_KEY = "coboc-book-STORAGE";
+
 document.addEventListener("DOMContentLoaded", () => {
   const addButton = document.getElementById("add-button");
   const modal = document.getElementById("modal");

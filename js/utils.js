@@ -5,7 +5,9 @@ const addBook = () => {
   const booksCoverContainer = document.getElementById("cover");
 
   const [file] = booksCoverContainer.files;
-  const bookCoverValue = file ? URL.createObjectURL(file) : "https://www.darren-young.com/wp-content/uploads/2015/04/default-placeholder.png";
+  const bookCoverValue = file
+    ? URL.createObjectURL(file)
+    : "https://www.darren-young.com/wp-content/uploads/2015/04/default-placeholder.png";
 
   const generatedID = generateId();
   const bookObject = generateBookObject(
@@ -18,8 +20,10 @@ const addBook = () => {
   );
 
   books.push(bookObject);
-  document.dispatchEvent(new Event(RENDER_EVENT))
-}
+  document.dispatchEvent(new Event(RENDER_EVENT));
+
+  saveBooks();
+};
 
 const makeBookItem = (bookObject) => {
   const bookTitle = document.createElement("h3");
@@ -114,14 +118,15 @@ const clearFormInputs = (modal) => {
 };
 
 const addBookToFinish = (bookId) => {
-  const bookTarget = findBook(bookId)
-  
-  if (bookTarget === null) return
-  
-  bookTarget.isCompleted = true
+  const bookTarget = findBook(bookId);
 
-  document.dispatchEvent(new Event(RENDER_EVENT))
-}
+  if (bookTarget === null) return;
+
+  bookTarget.isCompleted = true;
+
+  document.dispatchEvent(new Event(RENDER_EVENT));
+  saveBooks();
+};
 
 function findBook(bookId) {
   for (const bookItem of books) {
@@ -139,6 +144,7 @@ function undoBookFromFinished(bookId) {
 
   bookTarget.isCompleted = false;
   document.dispatchEvent(new Event(RENDER_EVENT));
+  saveBooks();
 }
 
 function removeBookFromFinished(bookId) {
@@ -148,6 +154,7 @@ function removeBookFromFinished(bookId) {
 
   books.splice(bookTarget, 1);
   document.dispatchEvent(new Event(RENDER_EVENT));
+  saveBooks();
 }
 
 function findBookIndex(bookId) {
@@ -160,4 +167,7 @@ function findBookIndex(bookId) {
   return -1;
 }
 
-
+const saveBooks = () => {
+  const serializedData = JSON.stringify(books);
+  localStorage.setItem(STORAGE_KEY, serializedData);
+};
